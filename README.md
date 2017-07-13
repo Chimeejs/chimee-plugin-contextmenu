@@ -17,6 +17,7 @@ const chimee = new Chimee({
 > 提示：默认菜单项中的“查看日志”，依赖 `chimee-plugin-log` 插件的装载。
 
 效果示例：
+
 ![](https://p2.ssl.qhimg.com/dr/600__/t013b8a3bc80f678ea0.png)
 
 ## 增加自定义菜单项
@@ -28,19 +29,19 @@ Chimee.install(contextmenu);
 const chimee = new Chimee({
   wrapper: '#wrapper',
   plugins: [{
-  	 name: contextmenu.name,
-  	 menus: [
-  	   {
-  	   	 text: '暂停',
-  	   	 action: 'menu-pause'
-  	   }
-  	 ]
+    name: contextmenu.name,
+    menus: [
+      {
+        text: '暂停',
+        action: 'menu-pause'
+      }
+    ]
   }]
 });
 player.on('menu-pause', function() {
-	console.log('我要暂停了');
-	// 通知播放器暂停
-	player.emit('pause');
+  console.log('我要暂停了');
+  // 通知播放器暂停
+  player.emit('pause');
 });
 ```
 通过上例看，菜单项的`action`可以触发播放器实例事件，所以也即是所菜单项的 `action` 在插件内部会作为 `player.emit('menu-pause')` 执行。
@@ -72,6 +73,7 @@ player.on('play', () => {
 这样一个跟随播放状态切换的菜单项就实现了。
 
 效果示例：
+
 ![](https://p0.ssl.qhimg.com/dr/600__/t0152f1dafd30e6fd7c.png)
 
 那么为什么要一直显示基础菜单项呢，要去掉怎么做呢？ 
@@ -85,23 +87,24 @@ Chimee.install(contextmenu);
 const chimee = new Chimee({
   wrapper: '#wrapper',
   plugins: [{
-  	 name: contextmenu.name,
-  	 baseMenus: [], // 这里我们告诉插件，不需要基础菜单项，当然也用来定义想要的基础菜单项
-  	 menus: [
-  	   {
-  	   	 text: '暂停',
-  	   	 action: 'pause'
-  	   },
+    name: contextmenu.name,
+    baseMenus: [], // 这里我们告诉插件，不需要基础菜单项，当然也用来定义想要的基础菜单项
+    menus: [
+      {
+        text: '暂停',
+        action: 'pause'
+      },
       {
         text: 'copyright 360 vs: {VERSION}',
         disable: true
       }
-  	 ]
+    ]
   }]
 });
 ```
 
-效果：
+效果示例：
+
 ![](https://p3.ssl.qhimg.com/dr/600__/t01e0f5dd57e220e60b.png)
 
 欢迎使用、反馈您的建议。
