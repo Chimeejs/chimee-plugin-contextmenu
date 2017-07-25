@@ -2,7 +2,7 @@ import chimeeContextmenu from 'index';
 import {$} from 'chimee-helper';
 
 // 模拟构造
-const $domWrap = $('<chimee-menu>').append($('<ul></ul>'));
+const $domWrap = $('<chimee-menu>').append($('<ul></ul>')).appendTo('body');
 const $dom = $domWrap[0];
 Object.assign(
   chimeeContextmenu,

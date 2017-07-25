@@ -44,7 +44,15 @@ export default popupFactory({
   },
   events: {
     contextmenu (e) {
-      this.offset(e.offsetX + 'px ' + e.offsetY + 'px').open(e);
+      let left = e.offsetX;
+      let top = e.offsetY;
+      const containerEl = this.$dom.parentElement;
+      if (isFunction(containerEl.getBoundingClientRect)) {
+        const rect = containerEl.getBoundingClientRect();
+        left = e.pageX - rect.left;
+        top = e.pageY - rect.top;
+      }
+      this.offset(left + 'px ' + top + 'px').open(e);
       e.preventDefault();
     },
     mousedown (e) {

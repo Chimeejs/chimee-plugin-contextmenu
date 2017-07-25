@@ -11,7 +11,7 @@ import contextmenu from 'chimee-plugin-contextmenu';
 Chimee.install(contextmenu);
 const chimee = new Chimee({
   wrapper: '#wrapper',
-  plugins: [contextmenu]
+  plugins: [contextmenu.name]
 });
 ```
 > 提示：默认菜单项中的“查看日志”，依赖 `chimee-plugin-log` 插件的装载。
