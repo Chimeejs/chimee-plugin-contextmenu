@@ -49,8 +49,8 @@ export default popupFactory({
       const containerEl = this.$dom.parentElement;
       if (isFunction(containerEl.getBoundingClientRect)) {
         const rect = containerEl.getBoundingClientRect();
-        left = e.pageX - rect.left;
-        top = e.pageY - rect.top;
+        left = e.pageX - rect.left - (document.documentElement.scrollLeft || document.body.scrollLeft || 0);
+        top = e.pageY - rect.top - (document.documentElement.scrollTop || document.body.scrollTop || 0);
       }
       this.offset(left + 'px ' + top + 'px').open(e);
       e.preventDefault();
