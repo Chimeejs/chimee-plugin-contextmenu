@@ -21,13 +21,14 @@ export default popupFactory({
         hide: true
       },
       {
-        text: 'copyright 360 vs: {VERSION}',
+        text: 'Chimee {VERSION} &copy; 360',
+        url: 'http://chimee.org',
         disable: true
-      },
+      }/*,
       {
         text: '关闭',
         className: '_close'
-      }
+      }*/
     ]
   },
   create () {
@@ -37,6 +38,17 @@ export default popupFactory({
     }
     this.updatemenu(menus);
     this.$domWrap.on('click', this.clickHandler);
+    // 如果已装载日志插件，则显示相应菜单项
+    if(this.$plugins.chimeeLog){
+      this.switchLogMenu(false);
+    }
+    // 点击播放器之外的文档区域关闭右键菜单
+    this._doc = new this.$domWrap.constructor(document);
+    this._doc_click = e => this.close();
+    this._doc.on('click',this._doc_click);
+  },
+  destroy () {
+    this._doc.off('click',this._doc_click);
   },
   opened () {
     // 盖住所有插件
@@ -54,9 +66,6 @@ export default popupFactory({
       }
       this.offset(left + 'px ' + top + 'px').open(e);
       e.preventDefault();
-    },
-    mousedown (e) {
-      e.button !== 2 && this.close(e);
     },
     // 当日志插件卸载时隐藏“查看日志”菜单项
     logPluginDestroy () {
@@ -80,15 +89,21 @@ export default popupFactory({
       if (isArray(menusConfig)) {
         menus = menus.concat(menusConfig);
       }
-      // console.log(this.$plugins.chimeeLog);
-      const meunsHTML = menus.concat(this.baseMenus).map(({hide, disable, action, className, text}) => `
-        <li
-         ${disable ? ' disable' : ''}
-         ${action ? ' data-action="' + action + '"' : ''}
-         ${className ? ' class="' + className + '"' : ''}
-         ${hide ? ' style="display:none"' : ''}
-        >${text.replace(/\{([^)]*)\}/g, (_, matchStr) => this[matchStr])}</li>
-      `).join('');
+      // 菜单模板编译
+      const meunsHTML = menus.concat(this.baseMenus).map(({hide, disable, action, className, text, url}) => {
+        const attrDis = disable ? 'disable' : '';
+        const dataAct = action ? 'data-action="' + action + '"' : '';
+        const clsAttr = className ? 'class="' + className + '"' : '';
+        const hideSty = hide ? 'style="display:none"' : '';
+        // 文本替换，使之支持 {VERSION} 的变量写法
+        let innText = text.replace(/\{([^)]*)\}/g, (_, matchStr) => this[matchStr]);
+        if(url){
+          innText = `<a href="${url}" target="_blank">${innText}</a>`;
+        }
+        return `<li ${attrDis} ${dataAct} ${clsAttr} ${hideSty}>${innText}</li>`;
+      }).join('');
+
+      // 输出菜单DOM
       this.$domWrap.find('ul').html(meunsHTML);
     },
     clickHandler (e) {

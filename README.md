@@ -1,6 +1,6 @@
 # ContextmenuPlugin of Chimee
 
-> 右键菜单UI插件，可实现自定义菜单项及相应交互效果。
+> 右键菜单UI插件，可实现自定义菜单项及相应交互，效果参见[Demo](./demo/index.html)
 
 ## 默认菜单基本用法
 
@@ -97,6 +97,10 @@ const chimee = new Chimee({
       {
         text: 'copyright 360 vs: {VERSION}',
         disable: true
+      },
+      {
+        text: '我是一个新窗口打开的连接',
+        url: 'http://chimee.org'
       }
     ]
   }]
