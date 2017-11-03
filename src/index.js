@@ -1,6 +1,8 @@
 import popupFactory from 'chimee-plugin-popup';
 import {isFunction, isArray} from 'chimee-helper';
+
 import './index.css';
+
 const logPopupOpenEvt = 'openLogPopup';
 /* 右键菜单插件
  * 接收参数：baseMenus, menus
