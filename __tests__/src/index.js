@@ -11,6 +11,7 @@ Object.assign(
     $dom,
     $config: {
     },
+    $plugins: {},
     _emit: {},
     $emit (act) {
       this._emit[act] = (this._emit[act] || 0) + 1;
@@ -116,14 +117,6 @@ test('switchLogMenu', () => {
   chimeeContextmenu.baseMenus = chimeeContextmenu.data.baseMenus;
 });
 
-test('events.mousedown', () => {
-  chimeeContextmenu.open();
-  expect(chimeeContextmenu._hide).toBe(false);
-  chimeeContextmenu.events.mousedown.call(chimeeContextmenu, { button: 2 });
-  expect(chimeeContextmenu._hide).toBe(false);
-  chimeeContextmenu.events.mousedown.call(chimeeContextmenu, { button: 1 });
-  expect(chimeeContextmenu._hide).toBe(true);
-});
 
 test('events.contextmenu', () => {
   /* 

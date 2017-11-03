@@ -26,7 +26,7 @@ export default popupFactory({
         text: 'Chimee {VERSION} &copy; 360',
         url: 'http://chimee.org',
         disable: true
-      }/*,
+      }/* ,
       {
         text: '关闭',
         className: '_close'
@@ -41,16 +41,16 @@ export default popupFactory({
     this.updatemenu(menus);
     this.$domWrap.on('click', this.clickHandler);
     // 如果已装载日志插件，则显示相应菜单项
-    if(this.$plugins.chimeeLog){
+    if(this.$plugins.chimeeLog) {
       this.switchLogMenu(false);
     }
     // 点击播放器之外的文档区域关闭右键菜单
     this._doc = new this.$domWrap.constructor(document);
     this._doc_click = e => this.close();
-    this._doc.on('click',this._doc_click);
+    this._doc.on('click', this._doc_click);
   },
   destroy () {
-    this._doc.off('click',this._doc_click);
+    this._doc.off('click', this._doc_click);
   },
   opened () {
     // 盖住所有插件
@@ -99,7 +99,7 @@ export default popupFactory({
         const hideSty = hide ? 'style="display:none"' : '';
         // 文本替换，使之支持 {VERSION} 的变量写法
         let innText = text.replace(/\{([^)]*)\}/g, (_, matchStr) => this[matchStr]);
-        if(url){
+        if(url) {
           innText = `<a href="${url}" target="_blank">${innText}</a>`;
         }
         return `<li ${attrDis} ${dataAct} ${clsAttr} ${hideSty}>${innText}</li>`;
