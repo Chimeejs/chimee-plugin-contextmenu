@@ -60,6 +60,7 @@ export default function (modeConf) {
     input: 'src/index.js',
     banner,
     external (id) {
+      // console.log('id:', id);
       return !/min|umd|iife/.test(mode) && externalRegExp.test(id);
     },
     plugins: [

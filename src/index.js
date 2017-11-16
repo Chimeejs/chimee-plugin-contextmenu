@@ -8,7 +8,7 @@ const logPopupOpenEvt = 'openLogPopup';
  * 接收参数：baseMenus, menus
  * 也可通过方法 updatemenu 更新自定义菜单项
  */
-export default popupFactory({
+const contextmenuConf = popupFactory({
   tagName: 'chimee-menu',
   name: 'chimeeContextmenu',
   html: '<ul></ul>',
@@ -123,3 +123,5 @@ export default popupFactory({
     }
   }
 });
+
+export default contextmenuConf;
