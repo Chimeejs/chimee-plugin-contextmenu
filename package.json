@@ -35,11 +35,11 @@
   },
   "homepage": "https://github.com/Chimeejs/chimee-plugin-contextmenu#readme",
   "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "chimee-helper": "^0.2.6",
-    "chimee-plugin-popup": "0.0.5"
+    "chimee-helper": "git+https://github.com/Chimeejs/chimee-helper.git",
+    "chimee-plugin-popup": "git+https://github.com/Chimeejs/chimee-plugin-popup.git"
   },
   "devDependencies": {
+    "babel-runtime": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
     "babel-plugin-transform-runtime": "^6.23.0",
