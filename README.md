@@ -1,5 +1,7 @@
 # ContextmenuPlugin of Chimee
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Chimeejs/chimee-plugin-contextmenu.svg)](https://greenkeeper.io/)
+
 > 右键菜单UI插件，可实现自定义菜单项及相应交互，效果参见[Demo](./demo/index.html)
 
 ## 默认菜单基本用法
